@@ -1,0 +1,36 @@
+header {
+    background: rgb(255,255,255);
+    background-image: linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(26,49,80,1) 100%), url('/images/bg-home.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.solid-shadow {
+    box-shadow: 0 0 100rem 100rem #1A3150;
+}
+
+.panah {
+    background-image: url('/images/panah.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.our-services-gradient::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 30%; /* Sesuaikan tinggi area blur sesuai kebutuhan */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(26, 49, 80, 1) 50%);
+    pointer-events: none;
+}
+
+.product-banner {
+    background-image: linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(26,49,80,1) 100%), url('/images/bg-starlink.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
