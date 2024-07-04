@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion"
 import ReactLenis from 'lenis/react';
 
 function Beranda(props) {
     const ref = useRef(null);
+    const [produk, setProduk] = useState(JSON.parse(props.produk));
     const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["start end", "start start"]
@@ -310,36 +311,43 @@ function Beranda(props) {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-9 mt-9">
-                    <div className="col-span-2 md:col-span-1">
-                        <div className=' bg-[#1C4172] white-inner-shadow py-12 flex flex-col justify-center items-center'>
-                            <div className='w-full bottom-gradient relative'>
-                                <img className='w-1/4 mx-auto aspect-square' src={ null } alt="product" />
+                    {
+                        produk.map((item, index) =>
+                            !index % 2
+                            ?
+                            <div className="col-span-2 md:col-span-1" key={ item.id }>
+                                <div className='bg-[#1C4172] white-inner-shadow py-12 flex flex-col justify-center items-center'>
+                                    <div className='w-full bottom-gradient relative'>
+                                        <img className='w-1/4 mx-auto aspect-square' src={ item.asset_gambar_produk } alt="product" />
+                                    </div>
+                                    <div className='flex flex-col items-center justify-center gap-3'>
+                                        <div className='text-white text-4xl font-bold'>{ item.nama + ' ' + index }</div>
+                                        <div className='text-white text-xl font-light'>{ item.kategori_produk.kategori }</div>
+                                    </div>
+                                    <div className="flex items-center justify-center gap-6 mt-3">
+                                        <button className="button bg-blue-500 rounded-full text-xl md:text-2xl px-8 py-2 text-white">Pelajari</button>
+                                        <button className="button border border-white rounded-full text-xl md:text-2xl px-8 py-2 text-white">Beli</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div className='flex flex-col items-center justify-center gap-3'>
-                                <div className='text-white text-4xl font-bold'>Handphone</div>
-                                <div className='text-white text-xl font-light'>AIMAI</div>
+                            :
+                            <div className="col-span-2 md:col-span-1" key={ item.id }>
+                                <div className='bg-sky-200 white-inner-shadow py-12 flex flex-col justify-center items-center'>
+                                    <div className='w-full bottom-gradient relative'>
+                                        <img className='w-1/4 mx-auto aspect-square' src={ item.asset_gambar_produk } alt="product" />
+                                    </div>
+                                    <div className='flex flex-col items-center justify-center gap-3'>
+                                        <div className='text-slate-900 text-4xl font-bold'>{ item.nama + ' ' + index }</div>
+                                        <div className='text-slate-900 text-xl font-light'>{ item.kategori_produk.kategori }</div>
+                                    </div>
+                                    <div className="flex items-center justify-center gap-6 mt-3">
+                                        <button className="button bg-blue-500 rounded-full text-xl md:text-2xl px-8 py-2 text-white">Pelajari</button>
+                                        <button className="button border border-blue-500 rounded-full text-xl md:text-2xl px-8 py-2 text-blue-500">Beli</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="flex items-center justify-center gap-6 mt-3">
-                                <button className="button bg-blue-500 rounded-full text-xl md:text-2xl px-8 py-2 text-white">Pelajari</button>
-                                <button className="button border border-white rounded-full text-xl md:text-2xl px-8 py-2 text-white">Beli</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-span-2 md:col-span-1">
-                        <div className=' bg-sky-200 white-inner-shadow py-12 flex flex-col justify-center items-center'>
-                            <div className='w-full bottom-gradient relative'>
-                                <img className='w-1/4 mx-auto aspect-square' src={ null } alt="product" />
-                            </div>
-                            <div className='flex flex-col items-center justify-center gap-3'>
-                                <div className='text-slate-900 text-4xl font-bold'>Handphone</div>
-                                <div className='text-slate-900 text-xl font-light'>AIMAI</div>
-                            </div>
-                            <div className="flex items-center justify-center gap-6 mt-3">
-                                <button className="button bg-blue-500 rounded-full text-xl md:text-2xl px-8 py-2 text-white">Pelajari</button>
-                                <button className="button border border-blue-500 rounded-full text-xl md:text-2xl px-8 py-2 text-blue-500">Beli</button>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    }
                 </div>
                 <div className='mt-36 flex justify-center'>
                     <a className="button border border-white rounded-full text-xl md:text-2xl px-8 py-2 text-white" href='#'>{ `Selengkapnya >>` }</a>

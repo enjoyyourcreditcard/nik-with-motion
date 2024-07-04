@@ -7,6 +7,7 @@
 @section('content')
     <div
         id="beranda-component"
+        data-produk="{{ $produk }}"
         data-image-kapal="{{ asset('images/kapal.png') }}"
         data-image-antena="{{ asset('images/antena.png') }}"
     ></div>
